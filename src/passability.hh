@@ -17,36 +17,26 @@
  * along with hoverboard-sdl.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MAP_HH
-#define MAP_HH
+#ifndef PASSABILITY_HH
+#define PASSABILITY_HH
 
-#include <map>
-#include <set>
+#include <vector>
 
-#include <SDL2pp/Rect.hh>
-#include <SDL2pp/Texture.hh>
-#include <SDL2pp/Renderer.hh>
-
-class Map {
+class PassabilityMap {
 private:
-	SDL2pp::Renderer& renderer_;
-
-	std::set<SDL2pp::Point> absent_tiles_;
-	std::map<SDL2pp::Point, SDL2pp::Texture> tiles_;
-
-private:
-	static std::string MakeTilePath(SDL2pp::Point tile);
-
-	constexpr static int floordiv(int a, int b) {
-		// signed division with flooring (instead of rounding to zero)
-		return a < 0 ? (a - b + 1) / b : a / b;
-	}
+	std::vector<bool> mask_;
 
 public:
-	Map(SDL2pp::Renderer& renderer);
-	~Map();
+	PassabilityMap() : mask_(512 * 512, false) {
+	}
 
-	void Render(SDL2pp::Rect rect);
+	void Set(int x, int y) {
+		mask_[x + y * 512] = true;
+	}
+
+	bool Get(int x, int y) const {
+		return mask_[x + y * 512];
+	}
 };
 
-#endif // MAP_HH
+#endif // PASSABILITY_HH

@@ -1,6 +1,9 @@
 #!/bin/sh
+#
+# Run this script from data/ directory to download tiles
+#
 
-for x in `seq 928 1106`; do
+for x in `seq 928 1107`; do
 	for y in `seq -- -1150 -1000`; do
 		echo -n "[$x,$y]: "
 		if [ -e "$x/$y.png" ]; then

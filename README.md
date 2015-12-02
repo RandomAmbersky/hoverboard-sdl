@@ -4,6 +4,8 @@
 
 Desktop version of [xkcd 1608 "Hoverboard"](https://xkcd.com/1608/) game.
 
+![Screenshot](docs/screenshot.png)
+
 ## Why
 
 I'm a big fan of [xkcd](https://xkcd.com/) by Randall Munroe, and
@@ -23,11 +25,10 @@ So there's plenty of reasons to have a proper native application,
 and, given that Randall makes the art available under [CC-by-NC
 license](https://xkcd.com/license.html), I want to accomplish that.
 
-## Roadmap
-
-- [x] Proof of concept - just a scrollable map
-- [ ] Game elements - player, physics, coins
-- [ ] Additional improvements such as mentioned save/load
+I consider this a feature-complete reimplementation - it provides
+the complete experience of the original hame and only lacks some
+hidden features like Gandalf mode. The project is now focused on
+optimization and extra features (such as game state saving).
 
 ## Building
 
@@ -36,16 +37,23 @@ Dependencies:
 * [CMake](http://www.cmake.org/)
 * [SDL2](http://libsdl.org/)
 * [SDL2_image](https://www.libsdl.org/projects/SDL_image/)
+* [SDL2_ttf](https://www.libsdl.org/projects/SDL_ttf/)
 
 The project also uses libSDL2pp, C++11 bindings library for SDL2.
 It's included into git repository as a submodule, so if you've
 obtained source through git, don't forget to run ```git submodule
 init && git submodule update```.
 
-To build the project, run:
+To build and run the game:
 
 ```
-cmake . && make
+cmake . && make && ./hoverboard
+```
+
+To install systemwide:
+
+```
+cmake -DCMAKE_INSTALL_PREFIX=/usr/local . && make && make install
 ```
 
 ## Author
@@ -55,7 +63,7 @@ cmake . && make
 ## License
 
 * Code: GPLv3 or later, see COPYING
-* Assets by Randall Munroe, Creative Commons Attribution-NonCommercial 2.5 License, see [kxcd.com](https://xkcd.com/license.html).
+* Assets by Randall Munroe, Creative Commons Attribution-NonCommercial 2.5 License, see [xkcd.com](https://xkcd.com/license.html).
 
 The project also bundles third party software under its own licenses:
 
